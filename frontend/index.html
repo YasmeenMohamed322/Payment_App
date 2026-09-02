@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimplePay</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>SimplePay</h1>
+
+    <!-- Register -->
+    <div id="register">
+
+        <h2>Register</h2>
+
+        <input id="regName" placeholder="Name">
+
+        <input id="regEmail" placeholder="Email">
+
+        <input
+            id="regPassword"
+            type="password"
+            placeholder="Password">
+
+        <button onclick="register()">
+            Register
+        </button>
+
+    </div>
+
+    <hr>
+
+    <!-- Login -->
+
+    <div id="login">
+
+        <h2>Login</h2>
+
+        <input id="loginEmail" placeholder="Email">
+
+        <input
+            id="loginPassword"
+            type="password"
+            placeholder="Password">
+
+        <button onclick="login()">
+            Login
+        </button>
+
+    </div>
+
+    <hr>
+
+    <!-- Dashboard -->
+
+    <div id="dashboard" style="display:none;">
+
+        <h2>Dashboard</h2>
+
+        <p id="balance"></p>
+
+        <h3>Transfer</h3>
+
+        <input
+            id="receiverEmail"
+            placeholder="Receiver Email">
+
+        <input
+            id="amount"
+            type="number"
+            placeholder="Amount">
+
+        <button onclick="transfer()">
+            Send
+        </button>
+
+        <h3>Transactions</h3>
+
+        <ul id="transactions"></ul>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
