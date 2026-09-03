@@ -7,6 +7,7 @@ services:
       - "8080:80"
     volumes:
       - ./frontend:/usr/share/nginx/html:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - backend
 
@@ -14,8 +15,6 @@ services:
     build:
       context: ./backend
     container_name: simplepay-backend
-    ports:
-      - "3000:3000"
     environment:
       PORT: 3000
       DB_HOST: simplepay-db
