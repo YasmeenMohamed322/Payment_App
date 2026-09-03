@@ -1,0 +1,41 @@
+services:
+
+  frontend:
+    image: nginx:alpine
+    container_name: simplepay-frontend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+    container_name: simplepay-backend
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      DB_HOST: simplepay-db
+      DB_PORT: 5432
+      DB_NAME: simplepay
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    container_name: simplepay-db
+    environment:
+      POSTGRES_DB: simplepay
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - simplepay-db-data:/var/lib/postgresql/data
+
+volumes:
+  simplepay-db-data:
