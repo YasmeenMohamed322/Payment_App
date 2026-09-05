@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simplepay-frontend
+  namespace: simplepay
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simplepay-frontend
+  template:
+    metadata:
+      labels:
+        app: simplepay-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: yasmeen322/simplepay-frontend:latest
+        ports:
+        - containerPort: 80
+

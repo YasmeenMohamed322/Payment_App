@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simplepay-backend
+  namespace: simplepay
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simplepay-backend
+  template:
+    metadata:
+      labels:
+        app: simplepay-backend
+    spec:
+      containers:
+      - name: backend
+        image: yasmeen322/simplepay-backend:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PORT
+          value: "3000"
+
+        - name: DB_HOST
+          value: simplepay-db
+
+        - name: DB_PORT
+          value: "5432"
+
+        - name: DB_NAME
+          value: simplepay
+
+        - name: DB_USER
+          value: postgres
+
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: simplepay-secrets
+              key: DB_PASSWORD
+
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: simplepay-secrets
+              key: JWT_SECRET
