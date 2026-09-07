@@ -1,3 +1,4 @@
 node_modules/
 .env
 *.log
+k8s/k8s-secrets.yaml
